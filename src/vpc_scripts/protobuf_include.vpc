@@ -10,8 +10,8 @@ $Project
 {
 	$Folder "Libraries"
 	{
-		$Libcommon libprotobuf [!$VS2012 && !$VS2013]
-		$Libcommon 2012\libprotobuf [$VS2012]
-		$Libcommon 2013\libprotobuf [$VS2013]
+		$Lib	"$LIBCOMMON\libprotobuf" [!$VS2012 && !$VS2013]
+		$Lib	"$LIBCOMMON\2012\libprotobuf" [$VS2012]
+		$Lib	"$LIBCOMMON\2013\libprotobuf" [$VS2013]
 	}
 }
