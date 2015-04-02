@@ -1,9 +1,21 @@
 //========= Copyright Valve Corporation ============//
 #pragma once
 
-#include "vrcommon/hmdplatform_private.h"
 #include "ihmddriver.h"
 #include "OVR.h"
+
+// The only code used from the private include
+#ifdef _MSC_VER
+#define OVERRIDE override
+#pragma warning(push)
+#pragma warning(disable : 4481) // warning C4481: nonstandard extension used: override specifier 'override'
+#elif defined(__clang__)
+#ifndef OVERRIDE
+#define OVERRIDE override
+#endif
+#else
+#define OVERRIDE
+#endif
 
 class COculusHmdLatest : public vr::IHmdDriver, public OVR::MessageHandler
 {
@@ -49,3 +61,7 @@ private:
 
 	float							m_fIpdMeters;
 };
+
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif

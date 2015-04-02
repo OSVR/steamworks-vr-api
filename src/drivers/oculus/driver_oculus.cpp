@@ -115,6 +115,17 @@ static inline bool StringHasPrefix(const char * str, const char * prefix) {
     return s.substr(0, pre.length()) == pre;
 }
 
+// figure out how to import from the dll - from private header
+#if defined(_WIN32)
+#define HMD_DLL_EXPORT extern "C" __declspec( dllexport )
+#define HMD_DLL_IMPORT extern "C" __declspec( dllimport )
+#elif defined(GNUC) || defined(COMPILER_GCC)
+#define HMD_DLL_EXPORT extern "C" __attribute__((visibility("default")))
+#define HMD_DLL_IMPORT extern "C" 
+#else
+#error "Unsupported Platform."
+#endif
+
 static const char *IHmdDriverProvider_Prefix = "IHmdDriverProvider_";
 
 HMD_DLL_EXPORT void *HmdDriverFactory( const char *pInterfaceName, int *pReturnCode )
