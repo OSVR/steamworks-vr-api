@@ -20,7 +20,6 @@ bool Plat_IsInDebugSession();
 #define DLLExtTokenPaste2(x) DLLExtTokenPaste(x)
 #define HMD_DLL_EXT_STRING DLLExtTokenPaste2( _DLL_EXT )
 
-// @todo: why do we ifndef fix it for WIN32 but not the others?
 #if defined(_WIN32)
 #ifndef MAX_PATH
 #define MAX_PATH 260
