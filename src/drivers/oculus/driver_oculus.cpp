@@ -7,9 +7,6 @@
 
 #include "OVR.h"
 
-#include "vrcommon/strtools.h"
-#include "vrcommon/hmdplatform_private.h"
-
 #include <vector>
 
 using namespace vr;
@@ -107,6 +104,16 @@ IHmdDriver* CDriver_Oculus::FindHmd( const char *pchId )
 	return NULL;
 }
 
+// Yes, this is not an ideal implementation, but it's a rarely called function
+// and certainly no reason to require internal headers.
+static inline bool StringHasPrefix(const char * str, const char * prefix) {
+    std::string s(str);
+    std::string pre(prefix);
+    if (pre.length() > s.length()) {
+        return false;
+    }
+    return s.substr(0, pre.length()) == pre;
+}
 
 static const char *IHmdDriverProvider_Prefix = "IHmdDriverProvider_";
 
